@@ -44,6 +44,11 @@
       "email": "mia@naver.com",
       "password": "12341234",
       "id": 9
+    },
+    {
+      "email": "mia2@naver.com",
+      "password": "12341234",
+      "id": 10
     }
   ],
   "boards": [
@@ -112,6 +117,12 @@
       "contents": "ㅋㅋㅋㅋ",
       "isDeleted": false,
       "id": 11
+    },
+    {
+      "email": "mia2@naver.com",
+      "contents": "zz",
+      "isDeleted": false,
+      "id": 12
     }
   ]
 }

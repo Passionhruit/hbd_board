@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const handleLogin = async (values: any) => {
-    const { email, password, confirmPassword, agreed } = values;
+    const { email, password } = values;
 
     // TODO: email과 password를 DB에서 찾아서 로그인 검증
     // TODO: 일치하는 유저가 없는 경우 "일치하는 유저를 찾을 수 없습니다." alert
@@ -28,6 +28,7 @@ const LoginForm: React.FC = () => {
         alert("로그인에 성공하였습니다. 메인페이지로 이동합니다.");
         navigate("/");
       } else {
+        alert("일치하는 유저를 찾을 수 없습니다.");
         return false;
       }
     } catch (error) {
