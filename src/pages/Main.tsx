@@ -39,7 +39,7 @@ const Main: React.FC<any> = () => {
       isDeleted: false,
     };
     try {
-      axios.post(`http://localhost:4000/boards`, newComment);
+      await axios.post(`http://localhost:4000/boards`, newComment);
       alert(
         "작성이 완료되었습니다. 아직 자동 새로고침이 불가하여 수동으로 갱신합니다."
       );
