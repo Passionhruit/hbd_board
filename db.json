@@ -39,6 +39,11 @@
       "email": "asdf",
       "password": "123",
       "id": 8
+    },
+    {
+      "email": "mia@naver.com",
+      "password": "12341234",
+      "id": 9
     }
   ],
   "boards": [
@@ -95,6 +100,18 @@
       "contents": "asdfasdf",
       "isDeleted": false,
       "id": 9
+    },
+    {
+      "email": "mia@naver.com",
+      "contents": "sdfsd",
+      "isDeleted": false,
+      "id": 10
+    },
+    {
+      "email": "mia@naver.com",
+      "contents": "ㅋㅋㅋㅋ",
+      "isDeleted": false,
+      "id": 11
     }
   ]
 }
