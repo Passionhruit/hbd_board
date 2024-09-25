@@ -20,7 +20,7 @@ const LoginForm: React.FC = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:4000/users?email=${email}`
+        `https://available-chisel-look.glitch.me/users?email=${email}`
       );
       if (password === response.data[0].password) {
         localStorage.setItem("token", shortid.generate());

@@ -12,7 +12,9 @@ const Main: React.FC<any> = () => {
     // TODO: 가져온 결과 배열을 data state에 set 하기
     // TODO: 네트워크 등 기타 문제인 경우, "일시적인 오류가 발생하였습니다. 고객센터로 연락주세요." alert
     try {
-      const response = await axios.get(`http://localhost:4000/boards`);
+      const response = await axios.get(
+        `https://available-chisel-look.glitch.me/boards`
+      );
       setData(response.data);
     } catch (error) {
       alert("일시적인 오류가 발생하였습니다.");
@@ -39,7 +41,10 @@ const Main: React.FC<any> = () => {
       isDeleted: false,
     };
     try {
-      await axios.post(`http://localhost:4000/boards`, newComment);
+      await axios.post(
+        `https://available-chisel-look.glitch.me/boards`,
+        newComment
+      );
       alert(
         "작성이 완료되었습니다. 아직 자동 새로고침이 불가하여 수동으로 갱신합니다."
       );
@@ -61,7 +66,7 @@ const Main: React.FC<any> = () => {
 
     try {
       await axios.patch(
-        `http://localhost:4000/boards/${comment.id}`,
+        `https://available-chisel-look.glitch.me/boards/${comment.id}`,
         editedComment
       );
       alert(
