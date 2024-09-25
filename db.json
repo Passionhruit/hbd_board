@@ -54,75 +54,27 @@
   "boards": [
     {
       "email": "test@gmail.com",
-      "contents": "asdf",
-      "isDeleted": false,
+      "contents": "방명록을 작성해주세요.",
+      "isDeleted": true,
       "id": 1
     },
     {
       "email": "test@gmail.com",
-      "contents": "aaslkdfasldfjalskf",
-      "isDeleted": false,
+      "contents": "zzzzz",
+      "isDeleted": true,
       "id": 2
     },
     {
       "email": "test@gmail.com",
-      "contents": "asdfasdfasd",
-      "isDeleted": false,
+      "contents": "첫번째 방명록",
+      "isDeleted": true,
       "id": 3
     },
     {
       "email": "test@gmail.com",
-      "contents": "bnnnnnnn",
-      "isDeleted": false,
+      "contents": "방명록",
+      "isDeleted": true,
       "id": 4
-    },
-    {
-      "email": "test@gmail.com",
-      "contents": "123",
-      "isDeleted": false,
-      "id": 5
-    },
-    {
-      "email": "test@gmail.com",
-      "contents": "nbnnnn",
-      "isDeleted": false,
-      "id": 6
-    },
-    {
-      "email": "test@gmail.com",
-      "contents": "asdfasdfadfasdf",
-      "isDeleted": false,
-      "id": 7
-    },
-    {
-      "email": "test@gmail.com",
-      "contents": "123123",
-      "isDeleted": false,
-      "id": 8
-    },
-    {
-      "email": "asdf",
-      "contents": "asdfasdf",
-      "isDeleted": false,
-      "id": 9
-    },
-    {
-      "email": "mia@naver.com",
-      "contents": "sdfsd",
-      "isDeleted": false,
-      "id": 10
-    },
-    {
-      "email": "mia@naver.com",
-      "contents": "ㅋㅋㅋㅋ",
-      "isDeleted": false,
-      "id": 11
-    },
-    {
-      "email": "mia2@naver.com",
-      "contents": "zz",
-      "isDeleted": false,
-      "id": 12
     }
   ]
 }

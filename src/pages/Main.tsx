@@ -53,6 +53,26 @@ const Main: React.FC<any> = () => {
     setContents(e.target.value);
   };
 
+  const handleDeleteComment = async (comment: any) => {
+    const editedComment = {
+      ...comment,
+      isDeleted: true,
+    };
+
+    try {
+      await axios.patch(
+        `http://localhost:4000/boards/${comment.id}`,
+        editedComment
+      );
+      alert(
+        "삭제가 완료되었습니다. 아직 자동 새로고침이 불가하여 수동으로 갱신합니다."
+      );
+      window.location.reload();
+    } catch (error) {
+      alert("일시적인 오류가 발생하였습니다. 고객센터로 연락주세요.");
+    }
+  };
+
   return (
     <MainWrapper>
       <h1>메인 리스트 페이지</h1>
@@ -64,17 +84,20 @@ const Main: React.FC<any> = () => {
         />
       </StyledForm>
       <ListWrapper>
-        {data.map((item: any, index) => (
-          <ListItem key={item.id}>
-            <span>
-              {index + 1}. {item.contents}
-            </span>
-            {/* // TODO: 로그인 한 user의 이메일과 일치하는 경우에만 삭제버튼 보이도록 제어 */}
-            {localStorage.getItem("email") === item.email && (
-              <Button>삭제</Button>
-            )}
-          </ListItem>
-        ))}
+        {data
+          //@ts-expect-error
+          .filter((item) => item.isDeleted === false)
+          .map((item: any, index) => (
+            <ListItem key={item.id}>
+              <span>
+                {index + 1}. {item.contents}
+              </span>
+              {/* // TODO: 로그인 한 user의 이메일과 일치하는 경우에만 삭제버튼 보이도록 제어 */}
+              {localStorage.getItem("email") === item.email && (
+                <Button onClick={() => handleDeleteComment(item)}>삭제</Button>
+              )}
+            </ListItem>
+          ))}
       </ListWrapper>
     </MainWrapper>
   );
