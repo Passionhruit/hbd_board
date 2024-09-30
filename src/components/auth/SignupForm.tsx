@@ -14,7 +14,7 @@ const SignupForm: React.FC<any> = ({ setIsLogin }) => {
 
     try {
       const response = await axios.get(
-        `http://localhost:4000/users?email=${email}`
+        `${process.env.REACT_APP_LOCAL_SERVER}/users?email=${email}`
       );
       console.log(response.data);
 
@@ -29,7 +29,7 @@ const SignupForm: React.FC<any> = ({ setIsLogin }) => {
         email,
         password,
       };
-      await axios.post(`http://localhost:4000/users`, newUser);
+      await axios.post(`${process.env.REACT_APP_LOCAL_SERVER}/users`, newUser);
 
       alert("회원가입이 성공적으로 처리되었습니다. 로그인페이지로 이동합니다.");
 

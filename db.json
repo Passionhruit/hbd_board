@@ -9,12 +9,6 @@
   "boards": [
     {
       "email": "test@gmail.com",
-      "contents": "1. 방명록 작성기능 및 수정 삭제 기능을 만들어주세요.",
-      "isDeleted": true,
-      "id": 1
-    },
-    {
-      "email": "test@gmail.com",
       "contents": "방명록 작성 수정 및 삭제기능을 만들어주세요.",
       "isDeleted": false,
       "id": 2
@@ -30,6 +24,12 @@
       "contents": "로그아웃을 누르면 로그인페이지로 돌아가게 해주세요.",
       "isDeleted": false,
       "id": 4
+    },
+    {
+      "email": "test@gmail.com",
+      "contents": "zzzz",
+      "isDeleted": true,
+      "id": 5
     }
   ]
 }

@@ -6,16 +6,19 @@ import axios from "axios";
 const Main: React.FC<any> = () => {
   const [data, setData] = useState([]);
   const [contents, setContents] = useState<string>("");
+  const [editContents, setEditContents] = useState("");
+  const [showEditInput, setShowEditInput] = useState(-1);
 
   const fetchData = async () => {
     // TODO: 데이터베이스에서 boards 리스트 가져오기
     // TODO: 가져온 결과 배열을 data state에 set 하기
     // TODO: 네트워크 등 기타 문제인 경우, "일시적인 오류가 발생하였습니다. 고객센터로 연락주세요." alert
     try {
-      const response = await axios.get(
-        `https://available-chisel-look.glitch.me/boards`
+      const { data } = await axios.get(
+        // `https://available-chisel-look.glitch.me/boards`
+        `${process.env.REACT_APP_LOCAL_SERVER}/boards`
       );
-      setData(response.data);
+      setData(data);
     } catch (error) {
       alert("일시적인 오류가 발생하였습니다.");
     }
@@ -42,7 +45,7 @@ const Main: React.FC<any> = () => {
     };
     try {
       await axios.post(
-        `https://available-chisel-look.glitch.me/boards`,
+        `${process.env.REACT_APP_LOCAL_SERVER}/boards`,
         newComment
       );
       alert(
@@ -66,7 +69,7 @@ const Main: React.FC<any> = () => {
 
     try {
       await axios.patch(
-        `https://available-chisel-look.glitch.me/boards/${comment.id}`,
+        `${process.env.REACT_APP_LOCAL_SERVER}/boards/${comment.id}`,
         editedComment
       );
       alert(
@@ -75,6 +78,31 @@ const Main: React.FC<any> = () => {
       window.location.reload();
     } catch (error) {
       alert("일시적인 오류가 발생하였습니다. 고객센터로 연락주세요.");
+    }
+  };
+
+  const handleUpdateComment = async (comment: any) => {
+    if (showEditInput !== comment.id) {
+      setShowEditInput(comment.id);
+      setEditContents(comment.contents);
+    } else {
+      const editedComment = {
+        ...comment,
+        contents: editContents,
+      };
+
+      try {
+        await axios.patch(
+          `${process.env.REACT_APP_LOCAL_SERVER}/boards/${comment.id}`,
+          editedComment
+        );
+        alert(
+          "수정이 완료되었습니다. 아직 자동 새로고침이 불가하여 수동으로 갱신합니다."
+        );
+        window.location.reload();
+      } catch (error) {
+        alert("일시적인 오류가 발생하였습니다. 고객센터로 연락주세요.");
+      }
     }
   };
 
@@ -94,12 +122,31 @@ const Main: React.FC<any> = () => {
           .filter((item) => item.isDeleted === false)
           .map((item: any, index) => (
             <ListItem key={item.id}>
-              <span>
-                {index + 1}. {item.contents}
-              </span>
+              {item.id === showEditInput ? (
+                <input
+                  style={{
+                    width: "50%",
+                  }}
+                  type="text"
+                  value={editContents}
+                  onChange={(e) => setEditContents(e.target.value)}
+                />
+              ) : (
+                <span>
+                  {index + 1}. {item.contents}
+                </span>
+              )}
+
               {/* // TODO: 로그인 한 user의 이메일과 일치하는 경우에만 삭제버튼 보이도록 제어 */}
               {localStorage.getItem("email") === item.email && (
-                <Button onClick={() => handleDeleteComment(item)}>삭제</Button>
+                <div>
+                  <Button onClick={() => handleUpdateComment(item)}>
+                    {showEditInput === item.id ? "확인" : "수정"}
+                  </Button>
+                  <Button onClick={() => handleDeleteComment(item)}>
+                    삭제
+                  </Button>
+                </div>
               )}
             </ListItem>
           ))}
